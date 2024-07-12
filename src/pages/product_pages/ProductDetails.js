@@ -41,7 +41,7 @@ const ProductDetail = () => {
     return (
         <div className={i18n.language === 'km' ? 'font-kantumruy flex justify-center flex-col items-center w-full bg-white shadow-md' : 'font-Poppins flex justify-center items-center w-full flex-col bg-white shadow-md'}>
             <div className='p-4 w-full rounded-b-sm flex flex-row gap-4 rounded-lg'>
-                <div className='flex items-center justify-center border rounded-lg p-4 bg-slate-100'>
+                <div className='flex items-center justify-center border rounded-lg p-6 bg-slate-100'>
                     <img src={product.image_url} alt={product.name} width={500} className='object-contain' />
                 </div>
                 <div className='flex flex-col gap-4 ml-8 text-xl'>
