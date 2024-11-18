@@ -1,3 +1,1 @@
-
-export const BASE_URL = 'http://www.camboteach.com/'
-
+export const BASE_URL = "http://localhost:8000/api";
