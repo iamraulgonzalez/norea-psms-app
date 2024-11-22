@@ -19,6 +19,7 @@ const AppTitle = ({ collapsed }) => {
           width={collapsed ? 50 : 80}
           alt="eco logo"
         />
+        <p className="font-kantumruy text-base mt-2">សាលាបឋមសិក្សានរា</p>
       </div>
     </Link>
   );
