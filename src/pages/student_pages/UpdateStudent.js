@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Modal, Form, Input, Select, DatePicker, message } from "antd";
-import { genderOptions, statusOptions } from "../../helpers/Option";
+import { genderOptions, provinceOptions, statusOptions } from "../../helpers/Option";
 import { BASE_URL } from "../../api/config";
 import axios from "axios";
 import moment from "moment";
@@ -77,7 +77,7 @@ function UpdateStudent({ isOpen, onClose, data, selectedData }) {
       onOk={handleUpdateStudent}
       width={1000}
       style={{ top: 20, padding: "unset" }}
-      okText="Create"
+      okText="Save"
     >
       <Form layout="vertical" form={form} className="py-4">
         <div className="flex items-center my-1">
@@ -133,6 +133,7 @@ function UpdateStudent({ isOpen, onClose, data, selectedData }) {
           >
             <DatePicker
               className="h-12"
+              format={"DD-MM-YYYY"}
               placeholder="Select date of birth"
               style={{ width: "100%" }}
             />
@@ -174,19 +175,19 @@ function UpdateStudent({ isOpen, onClose, data, selectedData }) {
           </Form.Item>
 
           <Form.Item
-            name="pob_province"
-            label="Place of Birth - Province"
-            className="w-1/2"
-          >
-            <Input placeholder="Enter province of birth" className="h-12" />
-          </Form.Item>
-
-          <Form.Item
             name="pob_district"
             label="Place of Birth - District"
             className="w-1/2"
           >
             <Input placeholder="Enter district of birth" className="h-12" />
+          </Form.Item>
+
+          <Form.Item
+            name="pob_province"
+            label="Place of Birth - Province"
+            className="w-1/2"
+          >
+            <Select placeholder="Select province of birth" className="h-12" options={provinceOptions} />
           </Form.Item>
         </div>
         <div className="flex items-center my-1">
@@ -214,19 +215,19 @@ function UpdateStudent({ isOpen, onClose, data, selectedData }) {
           </Form.Item>
 
           <Form.Item
-            name="current_province"
-            label="Current Province"
-            className="w-1/2"
-          >
-            <Input placeholder="Enter current province" className="h-12" />
-          </Form.Item>
-
-          <Form.Item
             name="current_district"
             label="Current District"
             className="w-1/2"
           >
             <Input placeholder="Enter current district" className="h-12" />
+          </Form.Item>
+
+          <Form.Item
+            name="current_province"
+            label="Current Province"
+            className="w-1/2"
+          >
+            <Select placeholder="Select current province" className="h-12" options={provinceOptions} />
           </Form.Item>
         </div>
 

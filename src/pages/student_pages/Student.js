@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "antd";
+import { Button, Input, Table } from "antd";
 import { BASE_URL } from "../../api/config";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { MdDeleteForever } from "react-icons/md";
@@ -7,6 +7,7 @@ import CreateStudent from "./CreateStudent";
 import UpdateStudent from "./UpdateStudent";
 import { FaEye } from "react-icons/fa";
 import { ViewStudentDetails } from "./ViewStudentDetails";
+import moment from "moment";
 export const Student = () => {
   const [data, setData] = useState([]);
 
@@ -59,6 +60,7 @@ export const Student = () => {
       title: "លេខសម្គាល់សិស្ស",
       dataIndex: "student_id",
       key: "student_id",
+      render: (text) => <p>NR-{text}</p>,
       align: "center",
     },
     {
@@ -79,6 +81,9 @@ export const Student = () => {
       title: "ថ្ងៃខែឆ្នាំកំណើត",
       dataIndex: "dob",
       key: "dob",
+      render: (text) =>{
+        return <p>{moment(text).format("DD-MMM-YYYY")}</p>
+      },
       align: "center",
     },
     {
@@ -117,18 +122,24 @@ export const Student = () => {
 
   return (
     <div className="shadow-sm px-6 py-6 rounded-sm bg-white">
-      <div className="flex flex-row justify-between py-4">
+      <div className="flex flex-row justify-between py-4 w-full">
         <h1 className="font-bold text-2xl font-kantumruy">តារាងសិស្ស</h1>
-        <span>
-          <button
+        <span className="flex flex-row justify-between gap-4">
+          <Input.Search placeholder="Search..." size="large" className="w-[400px]"/>
+          <Button
             onClick={handleOpenCreate}
-            className="bg-blue-600 py-2 px-4 rounded text-white font-kantumruy"
+            className="bg-blue-600 py-5 rounde-lg text-white font-kantumruy"
           >
-            បង្កើតសិស្សថ្មី
-          </button>
+            ចុះឈ្មោះសិស្សថ្មី
+          </Button>
         </span>
       </div>
-      <Table className="w-full" columns={columns} dataSource={data} />
+      <hr className="py-4 -mb-4 border-t-2 border-gray-300" />
+      <Table className="w-full" columns={columns} dataSource={data} bordered  pagination={{ pageSize: 5 }} style={{
+          border: '1px solid #ccc',
+          borderRadius: '8px',
+          overflow: 'hidden',
+        }} />
       <CreateStudent
         isOpen={isOpenCreate}
         onClose={handleCloseCreate}
