@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Modal, Form, Input, Select, DatePicker, message } from "antd";
-import { genderOptions, provinceOptions, statusOptions } from "../../helpers/Option";
+import { genderOptions, provinceOptions, statusOptions,studentstatus } from "../../helpers/Option";
 import { BASE_URL } from "../../api/config";
 import axios from "axios";
 import moment from "moment";
@@ -15,6 +15,7 @@ function UpdateStudent({ isOpen, onClose, data, selectedData }) {
         gender: selectedData.gender || undefined,
         dob: selectedData.dob ? moment(selectedData.dob) : undefined,
         family_status: selectedData.family_status || undefined,
+        status: selectedData.status || undefined,
         pob_village: selectedData.pob_village || "",
         pob_commune: selectedData.pob_commune || "",
         pob_province: selectedData.pob_province || "",
@@ -148,6 +149,10 @@ function UpdateStudent({ isOpen, onClose, data, selectedData }) {
               options={statusOptions}
               className="h-12"
             />
+          </Form.Item>
+
+          <Form.Item name="status" label="Student Status" className="w-1/2">
+            <Select placeholder="Select family status" options={studentstatus} className="h-12" />
           </Form.Item>
         </div>
         <div className="flex items-center my-1">

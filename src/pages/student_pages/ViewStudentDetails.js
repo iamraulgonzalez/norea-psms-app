@@ -16,7 +16,7 @@ export const ViewStudentDetails = ({ isOpen, onClose, data }) => {
       open={isOpen}
       onCancel={onClose}
       footer={null}
-      width={1200}
+      width={1000}
       className="p-4"
     >
       <div className="flex flex-col">

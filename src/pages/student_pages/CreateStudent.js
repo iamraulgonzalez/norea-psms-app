@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Modal, Form, Input, Select, DatePicker, message } from "antd";
-import { genderOptions, provinceOptions, statusOptions } from "../../helpers/Option";
+import { genderOptions, provinceOptions, statusOptions, studentstatus } from "../../helpers/Option";
 import { BASE_URL } from "../../api/config";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 function CreateStudent({ isOpen, onClose, data }) {
   const [form] = Form.useForm();
+  const {t, i18n} = useTranslation()
 
  
   const [districtOptions, setDistrictOptions] = useState([]);
@@ -81,7 +83,12 @@ function CreateStudent({ isOpen, onClose, data }) {
   // Handle student creation
   const handleCreateStudent = async () => {
     try {
-      const body = form.getFieldsValue();
+      const body = 
+        {
+          ...form.getFieldsValue(),
+          status: "active"
+        };
+        console.log(body)
       const res = await axios.post(`${BASE_URL}students/addStudent`, body, {
         headers: {
           Accept: "application/json",
@@ -129,7 +136,7 @@ function CreateStudent({ isOpen, onClose, data }) {
       style={{ top: 20, padding: "unset" }}
       okText="Create"
     >
-      <Form layout="vertical" form={form} className="py-4">
+      <Form layout="vertical" form={form} className={i18n.language === "km" ? "font-kantumruy py-4" : "font-Poppins py-4"}>
         {/* Student Information */}
         <div className="flex items-center my-1">
           <div className="flex-grow border-t border-gray-300"></div>
@@ -165,8 +172,11 @@ function CreateStudent({ isOpen, onClose, data }) {
           </Form.Item>
 
           <Form.Item name="family_status" label="Family Status" className="w-1/2">
-            <Select placeholder="Select family status" options={statusOptions} className="h-12" />
+            <Select placeholder="Select family status" options={statusOptions} className="h-12" allowClear/>
           </Form.Item>
+          {/* <Form.Item name="status" label="Student Status" className="w-1/2">
+            <Select placeholder="Select family status" options={studentstatus} className="h-12" />
+          </Form.Item> */}
         </div>
 
         {/* Place of Birth Address */}
@@ -235,7 +245,7 @@ function CreateStudent({ isOpen, onClose, data }) {
         {/* Current Address */}
         <div className="flex items-center my-1">
           <div className="flex-grow border-t border-gray-300"></div>
-          <span className="px-4 text-gray-600 font-semibold">Current Address</span>
+          <span className="px-4 text-gray-600 font-semibold">{t("current_address")}</span>
           <div className="flex-grow border-t border-gray-300"></div>
         </div>
         <div className="flex flex-row gap-4 justify-between">

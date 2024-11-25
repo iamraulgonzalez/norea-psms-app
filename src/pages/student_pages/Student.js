@@ -87,12 +87,39 @@ export const Student = () => {
       align: "center",
     },
     {
-      title: "ស្ថានភាពគ្រួសារ",
+      title: "បណ្ណ័សមធម៌",
       dataIndex: "family_status",
       key: "family_status",
-      render: (text) => (text === "poor" ? "ក្រីក្រ" : "ធម្មតា"),
+      render: (text) => {
+        if(text === "level1"){
+          return <p>កម្រិត១</p>
+        }else if(text === "level2"){
+          return <p>កម្រិត២</p>
+        }else{
+          return <p>គ្មាន</p>
+        }
+      },
       align: "center",
     },
+  {
+    title: "ស្ថានភាពសិស្ស",
+    dataIndex: "status",
+    key: "status",
+    render: (text) => {
+      if(text === "active"){
+        return <p>កំពុងសិក្សា</p>
+      }else if(text === "graduate"){
+        return <p>បញ្ចប់ការសិក្សា</p>
+      }
+      else if (text === "suspend"){
+        return <p>ព្យួរការសិក្សា</p>
+      }else
+      {
+        return <p>ឈប់រៀន</p>
+      }
+    },
+    align: "center",
+  },
     {
       title: "ផេ្សងៗ",
       dataIndex: "action",
