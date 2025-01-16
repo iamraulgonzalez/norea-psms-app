@@ -60,21 +60,21 @@ export const Student = () => {
       title: "លេខសម្គាល់សិស្ស",
       dataIndex: "student_id",
       key: "student_id",
-      render: (text) => <p>NR-{text}</p>,
+      render: (text) => <p className="font-Poppins">NR-{text}</p>,
       align: "center",
     },
     {
       title: "ឈ្មោះសិស្ស",
       dataIndex: "student_name",
       key: "student_name",
-      render: (text) => <div className="text-left">{text}</div>,
+      render: (text) => <div className="text-left font-kantumruy">{text}</div>,
       align: "center",
     },
     {
-      title: "ភេទ",
+      title: "ភេទ", 
       dataIndex: "gender",
       key: "gender",
-      render: (text) => (text === "male" ? "ប្រុស" : "ស្រី"),
+      render: (text) => <p className="text-left font-kantumruy">{text === "male" ? "ប្រុស" : "ស្រី"}</p>,
       align: "center",
     },
     {
@@ -82,7 +82,7 @@ export const Student = () => {
       dataIndex: "dob",
       key: "dob",
       render: (text) =>{
-        return <p>{moment(text).format("DD-MMM-YYYY")}</p>
+        return <p className="text-left font-kantumruy">{moment(text).format("DD-MMM-YYYY")}</p>
       },
       align: "center",
     },
@@ -92,11 +92,11 @@ export const Student = () => {
       key: "family_status",
       render: (text) => {
         if(text === "level1"){
-          return <p>កម្រិត១</p>
+          return <p className="text-left font-kantumruy">កម្រិត១</p>
         }else if(text === "level2"){
-          return <p>កម្រិត២</p>
+          return <p className="text-left font-kantumruy">កម្រិត២</p>
         }else{
-          return <p>គ្មាន</p>
+          return <p className="text-left font-kantumruy">គ្មាន</p>
         }
       },
       align: "center",
@@ -107,21 +107,21 @@ export const Student = () => {
     key: "status",
     render: (text) => {
       if(text === "active"){
-        return <p>កំពុងសិក្សា</p>
+        return <p className="text-left font-kantumruy">កំពុងសិក្សា</p>
       }else if(text === "graduate"){
-        return <p>បញ្ចប់ការសិក្សា</p>
+        return <p className="text-left font-kantumruy">បញ្ចប់ការសិក្សា</p>
       }
       else if (text === "suspend"){
-        return <p>ព្យួរការសិក្សា</p>
+        return <p className="text-left font-kantumruy">ព្យួរការសិក្សា</p>
       }else
       {
-        return <p>ឈប់រៀន</p>
+        return <p className="text-left font-kantumruy">ឈប់រៀន</p>
       }
     },
     align: "center",
   },
     {
-      title: "ផេ្សងៗ",
+      title: "ជម្រើស",
       dataIndex: "action",
       key: "action",
       render: (text, record) => (
@@ -162,7 +162,7 @@ export const Student = () => {
         </span>
       </div>
       <hr className="py-4 -mb-4 border-t-2 border-gray-300" />
-      <Table className="w-full" columns={columns} dataSource={data} bordered  pagination={{ pageSize: 5 }} style={{
+      <Table className="w-full" onHeaderRow={() => ({className: "font-kantumruy"})} columns={columns} dataSource={data} bordered  pagination={{ pageSize: 5 }} style={{
           border: '1px solid #ccc',
           borderRadius: '8px',
           overflow: 'hidden',

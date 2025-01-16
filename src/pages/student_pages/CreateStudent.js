@@ -174,9 +174,9 @@ function CreateStudent({ isOpen, onClose, data }) {
           <Form.Item name="family_status" label="Family Status" className="w-1/2">
             <Select placeholder="Select family status" options={statusOptions} className="h-12" allowClear/>
           </Form.Item>
-          {/* <Form.Item name="status" label="Student Status" className="w-1/2">
+          { <Form.Item name="status" label="Student Status" className="w-1/2">
             <Select placeholder="Select family status" options={studentstatus} className="h-12" />
-          </Form.Item> */}
+          </Form.Item> }
         </div>
 
         {/* Place of Birth Address */}
@@ -186,15 +186,28 @@ function CreateStudent({ isOpen, onClose, data }) {
           <div className="flex-grow border-t border-gray-300"></div>
         </div>
         <div className="flex flex-row gap-4 justify-between">
-          <Form.Item name="pob_village" label="Place of Birth - Village" className="w-1/2">
+        <Form.Item name="pob_province" label="Place of Birth - Province" className="w-1/2">
             <Select
-              placeholder="Select village of birth"
+              placeholder="Select province of birth"
               className="h-12"
-              options={villageOptions.map(village => ({
-                label: village.label,
-                value: village.value,
+              options={provinceOptions.map(province => ({
+                label: province.label,
+                value: province.value,
               }))}
-              disabled={!selectedCommune}
+              onChange={handleProvinceChange}
+            />
+          </Form.Item>
+
+          <Form.Item name="pob_district" label="Place of Birth - District" className="w-1/2">
+            <Select
+              placeholder="Select district of birth"
+              className="h-12"
+              options={districtOptions.map(district => ({
+                label: district.label,
+                value: district.value,
+              }))}
+              disabled={!selectedProvince}
+              onChange={handleDistrictChange}
             />
           </Form.Item>
 
@@ -213,31 +226,17 @@ function CreateStudent({ isOpen, onClose, data }) {
               option.label.toLowerCase().includes(input.toLowerCase())
             }
           />
-
           </Form.Item>
 
-          <Form.Item name="pob_district" label="Place of Birth - District" className="w-1/2">
+          <Form.Item name="pob_village" label="Place of Birth - Village" className="w-1/2">
             <Select
-              placeholder="Select district of birth"
+              placeholder="Select village of birth"
               className="h-12"
-              options={districtOptions.map(district => ({
-                label: district.label,
-                value: district.value,
+              options={villageOptions.map(village => ({
+                label: village.label,
+                value: village.value,
               }))}
-              disabled={!selectedProvince}
-              onChange={handleDistrictChange}
-            />
-          </Form.Item>
-
-          <Form.Item name="pob_province" label="Place of Birth - Province" className="w-1/2">
-            <Select
-              placeholder="Select province of birth"
-              className="h-12"
-              options={provinceOptions.map(province => ({
-                label: province.label,
-                value: province.value,
-              }))}
-              onChange={handleProvinceChange}
+              disabled={!selectedCommune}
             />
           </Form.Item>
         </div>
@@ -249,28 +248,15 @@ function CreateStudent({ isOpen, onClose, data }) {
           <div className="flex-grow border-t border-gray-300"></div>
         </div>
         <div className="flex flex-row gap-4 justify-between">
-          <Form.Item name="current_village" label="Current Village" className="w-1/2">
+          <Form.Item name="current_province" label="Current Province" className="w-1/2" >
             <Select
-              placeholder="Select current village"
+              placeholder="Select current province"
               className="h-12"
-              options={currentVillageOptions.map(village => ({
-                label: village.label,
-                value: village.value,
+              options={provinceOptions.map(province => ({
+                label: province.label,
+                value: province.value,
               }))}
-              disabled={!selectedCurrentCommune}
-            />
-          </Form.Item>
-
-          <Form.Item name="current_commune" label="Current Commune" className="w-1/2">
-            <Select
-              placeholder="Select current commune"
-              className="h-12"
-              options={currentCommuneOptions.map(commune => ({
-                label: commune.label,
-                value: commune.value,
-              }))}
-              disabled={!selectedCurrentDistrict}
-              onChange={handleCurrentCommuneChange}
+              onChange={handleCurrentProvinceChange}
             />
           </Form.Item>
 
@@ -287,17 +273,30 @@ function CreateStudent({ isOpen, onClose, data }) {
             />
           </Form.Item>
 
-          <Form.Item name="current_province" label="Current Province" className="w-1/2" >
+          <Form.Item name="current_commune" label="Current Commune" className="w-1/2">
             <Select
-              placeholder="Select current province"
+              placeholder="Select current commune"
               className="h-12"
-              options={provinceOptions.map(province => ({
-                label: province.label,
-                value: province.value,
+              options={currentCommuneOptions.map(commune => ({
+                label: commune.label,
+                value: commune.value,
               }))}
-              onChange={handleCurrentProvinceChange}
+              disabled={!selectedCurrentDistrict}
+              onChange={handleCurrentCommuneChange}
             />
           </Form.Item>
+
+          <Form.Item name="current_village" label="Current Village" className="w-1/2">
+            <Select
+              placeholder="Select current village"
+              className="h-12"
+              options={currentVillageOptions.map(village => ({
+                label: village.label,
+                value: village.value,
+              }))}
+              disabled={!selectedCurrentCommune}
+            />
+          </Form.Item>        
         </div>
 
         {/* Parent's Information */}
